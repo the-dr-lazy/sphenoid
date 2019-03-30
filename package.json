@@ -1,0 +1,32 @@
+{
+  "name": "@sphenoid/root",
+  "description": "Yet another beautiful and modern React design system.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thebrodmann/sphenoid"
+  },
+  "author": {
+    "name": "Mohammad Hasani",
+    "email": "thebrodmann@gmail.com",
+    "url": "https://github.com/thebrodmann"
+  },
+  "license": "MIT",
+  "private": true,
+  "keywords": [
+    "ui",
+    "ux",
+    "kit",
+    "javascript",
+    "typescript",
+    "react",
+    "vue",
+    "angular",
+    "sass",
+    "scss",
+    "css",
+    "uikit",
+    "bootstrap",
+    "free",
+    "web"
+  ]
+}
