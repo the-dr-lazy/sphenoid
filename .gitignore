@@ -1,9 +1,9 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
-/tmp
-/out-tsc
+dist
+tmp
+out-tsc
 
 # Runtime data
 pids
@@ -67,6 +67,9 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+
+# Parcel cache directory
+.cache
 
 # Optional REPL history
 .node_repl_history
