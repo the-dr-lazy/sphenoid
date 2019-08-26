@@ -11,5 +11,8 @@
     "email": "thebrodmann@gmail.com",
     "url": "https://github.com/thebrodmann"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "v.scss": "^1.1.1"
+  }
 }

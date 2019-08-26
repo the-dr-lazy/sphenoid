@@ -1,0 +1,33 @@
+/// CSS variable exponentiation operator
+///
+/// @group utils
+/// @author Mohammad Hasani
+///
+/// @parameter {String} $name - CSS variable name
+/// @parameter {Number} $exponent - The exponent used to raise the CSS variable
+/// @return {String} A literal representing the given CSS variable taken to the power of the give exponent
+@function v-pow($name, $exponent) {
+  @if $exponent == 0 {
+    @return '1';
+  }
+
+  $declaration: v($name);
+  $accumulation: $declaration;
+  $prefix: '';
+
+  @if $exponent < 0 {
+    $prefix: '1 / ';
+  }
+
+  $exponent: abs($exponent);
+
+  @if $exponent == 1 {
+    @return $prefix + '(' + $accumulation + ')';
+  }
+
+  @for $i from 0 through ($exponent - 2) {
+    $accumulation: $accumulation + ' * ' + $declaration;
+  }
+
+  @return $prefix + '(' + $accumulation + ')';
+}
