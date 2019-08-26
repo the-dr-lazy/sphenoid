@@ -1,0 +1,92 @@
+// TODO
+$root-font-scale-ratio: null !default;
+$root-line-height-ratio: null !default;
+$root-font-size: 16px !default;
+$font-family: null !default;
+
+:root {
+  --font-base-size: 1em;
+  --font-scale-ratio: #{$root-font-scale-ratio};
+  --line-height-ratio: #{$root-line-height-ratio};
+
+  font-size: $root-font-size;
+  font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/// Generate calculation of modular scale by CSS variables
+///
+/// @group Typography
+/// @author Mohammad Hasani
+///
+/// @parameter {Number} $step - Modular scale step
+/// @return {String} A literal representing the calculation of modular scale from base font size and font scale ratio
+@function modularscale($step) {
+  @return v(font-base-size) + ' * ' + '(' + v-pow(font-scale-ratio, $step) + ')';
+}
+
+/// Calculate `font-size` by modular scale step
+///
+/// @group Typography
+/// @author Mohammad Hasani
+///
+/// @parameter {Number} $step - Modular scale step
+/// @output `font-size`
+@mixin font-size($step) {
+  font-size: calc(#{modularscale($step)});
+}
+
+/// Set `line-height` by --line-height-ratio CSS variable
+///
+/// @group Typography
+/// @author Mohammad Hasani
+///
+/// @output `line-height`
+@mixin line-height() {
+  line-height: v(line-height-ratio);
+}
+
+/// Mixes `font-size` and `line-height` mixins together
+///
+/// @group Typography
+/// @author Mohammad Hasani
+///
+/// @parameter {Number} $step - Modular scale step
+/// @output `font-size`, `line-height`
+@mixin typography($step) {
+  @include font-size($step);
+  @include line-height;
+}
+
+/// Modular scale defined steps
+$steps: 3, 2, 1, 0, -1, -2;
+
+.o-text {
+  @include typography(0);
+
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+@each $step in $steps {
+  // Branch negative steps for scale down
+  @if $step < 0 {
+    .o-text--down-#{abs($step)} {
+      @include typography($step);
+    }
+  }
+
+  // Branch positive steps for scale up
+  @if $step > 0 {
+    .o-text--up-#{$step} {
+      @include typography($step);
+    }
+  }
+}
+
+.o-paragraph {
+  @extend .o-text;
+
+  width: 50ch;
+}
